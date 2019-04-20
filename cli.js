@@ -1,2 +1,2 @@
 const jsxImport = require('import-jsx');
-jsxImport('index.jsx');
+jsxImport('./index.jsx');

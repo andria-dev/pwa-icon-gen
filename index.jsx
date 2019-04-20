@@ -1,7 +1,8 @@
+const React = require('react');
 const { render } = require('ink');
 
 const jsxImport = require('import-jsx');
-const App = jsxImport('App.jsx');
+const App = jsxImport('./App.jsx');
 
 const args = require('minimist')(process.argv.slice(2));
 
@@ -20,7 +21,7 @@ function logHelp() {
 if (args.help || args.h) {
   logHelp();
 } else if (args._.length && args.out) {
-  render(<App iconPath={args._[0]} out={out} sizes={args.sizes} />);
+  render(<App iconPath={args._[0]} out={args.out} sizes={args.sizes} />);
 } else {
   console.log('Invalid usage. Try `pwa-icon-gen --help` for help.');
 }

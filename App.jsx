@@ -18,7 +18,7 @@ function App({ iconPath, out, sizes = defaultSizes }) {
     ) : null;
 
   const previousMessages = defaultSizes.slice(0, sizeIndex).map(size => (
-    <Color bgGreen>
+    <Color bgGreen key={size}>
       <Text>
         Created {out}
         {size}x{size}.png

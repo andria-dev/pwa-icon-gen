@@ -1,5 +1,5 @@
 const React = require('react');
-const { useState, useEffect } = React;
+const { useState, useEffect, useCallback } = React;
 const { Box, Color, Text, Static } = require('ink');
 const Spinner = require('ink-spinner').default;
 const sharp = require('sharp');
@@ -8,25 +8,33 @@ const defaultSizes = [48, 72, 96, 144, 168, 192, 256, 512];
 
 function App({ iconPath, out, sizes = defaultSizes }) {
   const [sizeIndex, setSizeIndex] = useState(0);
-
   const currentSize = sizes[sizeIndex];
+
+  const [results, setResults] = useState([]);
+
+  const logResult = useCallback(
+    successful => {
+      setResults(prev => [...prev, [currentSize, successful]]);
+      setSizeIndex(prev => prev + 1);
+    },
+    [sizeIndex, setSizeIndex, setResults, sizes]
+  );
+
   const currentMessage =
     sizeIndex < sizes.length ? (
       <Text bold>
         <Box marginRight={2}>
-          <Color blueBright>
-            <Spinner type="bouncingBar" />
-          </Color>
+          <Spinner type="bouncingBar" />
         </Box>
         Creating {out}
         {currentSize}x{currentSize}.png
       </Text>
     ) : null;
 
-  const previousMessages = sizes.slice(0, sizeIndex).map(size => (
+  const previousMessages = results.map(([size, successful]) => (
     <Text key={size}>
-      <Box marginRight={1}>✅</Box>
-      <Color bgGreen>
+      <Box marginRight={1}>{successful ? '✅' : '❌'}</Box>
+      <Color bgGreen={successful} bgRed={!successful}>
         <Box>
           {' '}
           Created {out}
@@ -37,15 +45,13 @@ function App({ iconPath, out, sizes = defaultSizes }) {
   ));
 
   useEffect(() => {
-    let current = sizeIndex;
     const id = setInterval(() => {
-      if (current === sizes.length) {
-        return;
+      if (sizeIndex < sizes.length) {
+        logResult(sizeIndex % 3);
       }
-      setSizeIndex(++current);
     }, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [setResults, sizeIndex, sizes]);
 
   return (
     <Box flexDirection="column" width="100%">

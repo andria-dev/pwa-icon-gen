@@ -21,7 +21,13 @@ function logHelp() {
 if (args.help || args.h) {
   logHelp();
 } else if (args._.length && args.out) {
-  render(<App iconPath={args._[0]} out={args.out} sizes={args.sizes} />);
+  render(
+    <App
+      iconPath={args._[0]}
+      out={args.out}
+      sizes={args.sizes && args.sizes.split(',').map(Number)}
+    />
+  );
 } else {
   console.log('Invalid usage. Try `pwa-icon-gen --help` for help.');
 }

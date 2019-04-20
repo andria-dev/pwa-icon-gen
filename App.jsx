@@ -10,14 +10,14 @@ function App({ iconPath, out, sizes = defaultSizes }) {
 
   const currentSize = sizes[sizeIndex];
   const currentMessage =
-    currentSize < sizes.length ? (
+    sizeIndex < sizes.length ? (
       <Text bold>
         Creating {out}
         {currentSize}x{currentSize}.png
       </Text>
     ) : null;
 
-  const previousMessages = defaultSizes.slice(0, sizeIndex).map(size => (
+  const previousMessages = sizes.slice(0, sizeIndex).map(size => (
     <Color bgGreen key={size}>
       <Text>
         Created {out}

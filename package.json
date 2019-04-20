@@ -1,0 +1,15 @@
+{
+  "name": "pwa-icon-gen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "pwa-icon-gen": "cli.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "import-jsx": "^2.0.0",
+    "ink": "^2.1.1",
+    "react": "^16.8.6",
+    "sharp": "^0.22.0"
+  }
+}

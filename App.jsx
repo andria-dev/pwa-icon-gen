@@ -1,14 +1,21 @@
 const React = require('react');
-const { useState, useEffect, useCallback } = React;
+const { useState, useEffect, useCallback, useMemo } = React;
 const { Box, Color, Text } = require('ink');
 const Spinner = require('ink-spinner').default;
 const sharp = require('sharp');
+const path = require('path');
 
 const defaultSizes = [48, 72, 96, 144, 168, 192, 256, 512];
 
 function App({ iconPath, out, sizes = defaultSizes }) {
   const [sizeIndex, setSizeIndex] = useState(0);
   const currentSize = sizes[sizeIndex];
+
+  const completeIconPath = useMemo(() => path.resolve(iconPath), [iconPath]);
+  const currentOutPath = useMemo(
+    () => path.join(path.resolve(out), `${currentSize}x${currentSize}.png`),
+    [out, currentSize]
+  );
 
   const [results, setResults] = useState([]);
 
@@ -23,14 +30,13 @@ function App({ iconPath, out, sizes = defaultSizes }) {
     [sizeIndex, setSizeIndex, setResults, sizes]
   );
 
-  const currentFilePath = `${out}${currentSize}x${currentSize}.png`;
   const currentMessage =
     sizeIndex < sizes.length ? (
       <Text bold>
         <Box marginRight={2}>
           <Spinner type="bouncingBar" />
         </Box>
-        Creating {currentFilePath}
+        Creating {path.join(out, `${currentSize}x${currentSize}.png`)}
       </Text>
     ) : null;
 
@@ -40,8 +46,8 @@ function App({ iconPath, out, sizes = defaultSizes }) {
       <Color bgGreen={successful} bgRed={!successful}>
         <Box>
           {' '}
-          Created {out}
-          {size}x{size}.png{fileSize && ` – ${fileSize}B`}{' '}
+          Created {path.join(out, `${size}x${size}.png`)}
+          {fileSize && ` – ${fileSize}B`}{' '}
         </Box>
       </Color>
     </Text>
@@ -52,9 +58,9 @@ function App({ iconPath, out, sizes = defaultSizes }) {
       return;
     }
 
-    sharp(iconPath)
+    sharp(completeIconPath)
       .resize(currentSize, currentSize)
-      .toFile(currentFilePath)
+      .toFile(currentOutPath)
       .then(({ size: fileSize }) => {
         logResult(true, fileSize);
       })

@@ -1,6 +1,6 @@
 const React = require('react');
 const { useState, useEffect, useCallback } = React;
-const { Box, Color, Text, Static } = require('ink');
+const { Box, Color, Text } = require('ink');
 const Spinner = require('ink-spinner').default;
 const sharp = require('sharp');
 
@@ -13,45 +13,55 @@ function App({ iconPath, out, sizes = defaultSizes }) {
   const [results, setResults] = useState([]);
 
   const logResult = useCallback(
-    successful => {
-      setResults(prev => [...prev, [currentSize, successful]]);
+    (successful, fileSize) => {
+      setResults(prev => [
+        ...prev,
+        [currentSize, successful, fileSize || null]
+      ]);
       setSizeIndex(prev => prev + 1);
     },
     [sizeIndex, setSizeIndex, setResults, sizes]
   );
 
+  const currentFilePath = `${out}${currentSize}x${currentSize}.png`;
   const currentMessage =
     sizeIndex < sizes.length ? (
       <Text bold>
         <Box marginRight={2}>
           <Spinner type="bouncingBar" />
         </Box>
-        Creating {out}
-        {currentSize}x{currentSize}.png
+        Creating {currentFilePath}
       </Text>
     ) : null;
 
-  const previousMessages = results.map(([size, successful]) => (
+  const previousMessages = results.map(([size, successful, fileSize]) => (
     <Text key={size}>
       <Box marginRight={1}>{successful ? '✅' : '❌'}</Box>
       <Color bgGreen={successful} bgRed={!successful}>
         <Box>
           {' '}
           Created {out}
-          {size}x{size}.png{' '}
+          {size}x{size}.png{fileSize && ` – ${fileSize}B`}{' '}
         </Box>
       </Color>
     </Text>
   ));
 
   useEffect(() => {
-    const id = setInterval(() => {
-      if (sizeIndex < sizes.length) {
-        logResult(sizeIndex % 3);
-      }
-    }, 1000);
-    return () => clearInterval(id);
-  }, [setResults, sizeIndex, sizes]);
+    if (sizeIndex >= sizes.length) {
+      return;
+    }
+
+    sharp(iconPath)
+      .resize(currentSize, currentSize)
+      .toFile(currentFilePath)
+      .then(({ size: fileSize }) => {
+        logResult(true, fileSize);
+      })
+      .catch(() => {
+        logResult(false);
+      });
+  }, [sizeIndex]);
 
   return (
     <Box flexDirection="column" width="100%">

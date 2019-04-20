@@ -21,13 +21,16 @@ function logHelp() {
 if (args.help || args.h) {
   logHelp();
 } else if (args._.length && args.out) {
-  render(
-    <App
-      iconPath={args._[0]}
-      out={args.out}
-      sizes={args.sizes && args.sizes.split(',').map(Number)}
-    />
-  );
+  if (typeof args.sizes === 'string') {
+    args.sizes = args.sizes
+      .split(',')
+      .map(Number)
+      .filter(x => !!x);
+  } else if (typeof args.sizes === 'number') {
+    args.sizes = [args.sizes];
+  }
+
+  render(<App iconPath={args._[0]} out={args.out} sizes={args.sizes} />);
 } else {
   console.log('Invalid usage. Try `pwa-icon-gen --help` for help.');
 }

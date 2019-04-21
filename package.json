@@ -24,9 +24,7 @@
     "pwa-icon-gen": "./cli.js"
   },
   "files": [
-    "cli.js",
-    "index.js",
-    "App.js"
+    "src/**"
   ],
   "license": "MIT",
   "dependencies": {

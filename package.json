@@ -1,10 +1,33 @@
 {
   "name": "pwa-icon-gen",
+  "description": "A CLI tool for generating PWA PNG icons of different sizes from an existing image.",
+  "keywords": [
+    "pwa",
+    "icon",
+    "generator",
+    "gen",
+    "progressive-web-app",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisBrownie55/pwa-icon-gen.git"
+  },
+  "homepage": "https://github.com/ChrisBrownie55/pwa-icon-gen#readme",
+  "bugs": {
+    "url": "https://github.com/ChrisBrownie55/pwa-icon-gen/issues",
+    "email": "chbphone55@gmail.com"
+  },
   "version": "1.0.0",
   "main": "index.js",
   "bin": {
-    "pwa-icon-gen": "cli.js"
+    "pwa-icon-gen": "./cli.js"
   },
+  "files": [
+    "cli.js",
+    "index.js",
+    "App.js"
+  ],
   "license": "MIT",
   "dependencies": {
     "import-jsx": "^2.0.0",

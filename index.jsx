@@ -13,9 +13,8 @@ function logHelp() {
   console.log('');
   console.log('Options:');
   console.log('\t--out\tDestination directory for the icons.');
-  console.log(
-    '\t--sizes\tThe different sizes to be generated. Format: comma separated list'
-  );
+  console.log('\t--sizes\tThe different sizes to be generated.');
+  console.log('\t\tFormat: comma separated list (i.e. 128,256,512)');
 }
 
 if (args.help || args.h) {

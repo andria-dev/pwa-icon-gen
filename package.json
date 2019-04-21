@@ -19,9 +19,9 @@
     "email": "chbphone55@gmail.com"
   },
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "bin": {
-    "pwa-icon-gen": "./cli.js"
+    "pwa-icon-gen": "./src/cli.js"
   },
   "files": [
     "src/**"
@@ -34,5 +34,11 @@
     "minimist": "^1.2.0",
     "react": "^16.8.6",
     "sharp": "^0.22.0"
+  },
+  "scripts": {
+    "test:publish": "bash publish-test.sh"
+  },
+  "devDependencies": {
+    "npm-cli-login": "^0.1.1"
   }
 }

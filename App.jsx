@@ -1,7 +1,9 @@
 const React = require('react');
 const { useState, useEffect, useCallback, useMemo } = React;
+
 const { Box, Color, Text } = require('ink');
 const Spinner = require('ink-spinner').default;
+
 const sharp = require('sharp');
 const path = require('path');
 

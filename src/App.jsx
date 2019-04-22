@@ -51,7 +51,7 @@ function App({ iconPath, out, sizes = defaultSizes }) {
         <Box>
           {' '}
           Created {path.join(out, `${size}x${size}.png`)}
-          {fileSize && ` – ${fileSize}B`}{' '}
+          {fileSize && ` – ${fileSize}`}{' '}
         </Box>
       </Color>
     </Text>
@@ -70,7 +70,7 @@ function App({ iconPath, out, sizes = defaultSizes }) {
           true,
           format(fileSize)
             .slice(0, 2)
-            .join('')
+            .join(' ')
         );
       })
       .catch(() => {

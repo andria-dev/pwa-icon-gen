@@ -1,4 +1,5 @@
 dependencies:
+  '@chbphone55/pretty-bytes': 1.0.0
   import-jsx: 2.0.0
   ink: 2.1.1
   ink-spinner: 3.0.1
@@ -9,6 +10,11 @@ devDependencies:
   npm-cli-login: 0.1.1
 lockfileVersion: 5
 packages:
+  /@chbphone55/pretty-bytes/1.0.0:
+    dev: false
+    resolution:
+      integrity: sha512-XQA5iT7SsRP4ispmURiGXRWdwDo5pD7B1gCRxC/212rd5/IItsFsyhQXtM0v6PpmMW0Dzc3E2STwufD5u5WQrQ==
+      registry: 'http://registry.npmjs.com/'
   /@snyk/dep-graph/1.4.1:
     dependencies:
       graphlib: 2.1.7
@@ -3213,6 +3219,7 @@ packages:
     resolution:
       integrity: sha512-9SNQpwuEh2NucU83i2KMZnONVudZ86YNcFk9tq74YaqrQfgJWO3yB9uzH1tAg8iqh5c9F5j0wuyJ2z72wcum2w==
 specifiers:
+  '@chbphone55/pretty-bytes': ^1.0.0
   import-jsx: ^2.0.0
   ink: ^2.1.1
   ink-spinner: ^3.0.1

@@ -28,6 +28,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@chbphone55/pretty-bytes": "^1.0.0",
     "import-jsx": "^2.0.0",
     "ink": "^2.1.1",
     "ink-spinner": "^3.0.1",

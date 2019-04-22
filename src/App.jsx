@@ -1,6 +1,8 @@
 const React = require('react');
 const { useState, useEffect, useCallback, useMemo } = React;
 
+const { format } = require('@chbphone55/pretty-bytes');
+
 const { Box, Color, Text } = require('ink');
 const Spinner = require('ink-spinner').default;
 
@@ -64,7 +66,12 @@ function App({ iconPath, out, sizes = defaultSizes }) {
       .resize(currentSize, currentSize)
       .toFile(currentOutPath)
       .then(({ size: fileSize }) => {
-        logResult(true, fileSize);
+        logResult(
+          true,
+          format(fileSize)
+            .slice(0, 2)
+            .join('')
+        );
       })
       .catch(() => {
         logResult(false);

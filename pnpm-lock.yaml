@@ -7,6 +7,7 @@ dependencies:
   react: 16.8.6
   sharp: 0.22.0
 devDependencies:
+  e2e-verdaccio: 1.0.0
   npm-cli-login: 0.1.1
 lockfileVersion: 5
 packages:
@@ -805,6 +806,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
+  /e2e-verdaccio/1.0.0:
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-36ZMPO+4hjyyBxBSiMmhyMYKZHU5PGR8uyADcFxNpn+D6ofbzTmNlhR6u1berTkHsVYab5X1i0RyPh4lWe5AvQ==
+      registry: 'http://registry.npmjs.com/'
   /ecc-jsbn/0.1.2:
     dependencies:
       jsbn: 0.1.1
@@ -3220,6 +3227,7 @@ packages:
       integrity: sha512-9SNQpwuEh2NucU83i2KMZnONVudZ86YNcFk9tq74YaqrQfgJWO3yB9uzH1tAg8iqh5c9F5j0wuyJ2z72wcum2w==
 specifiers:
   '@chbphone55/pretty-bytes': ^1.0.0
+  e2e-verdaccio: ^1.0.0
   import-jsx: ^2.0.0
   ink: ^2.1.1
   ink-spinner: ^3.0.1

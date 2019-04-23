@@ -40,7 +40,6 @@
     "test:publish": "e2e-verdaccio"
   },
   "devDependencies": {
-    "e2e-verdaccio": "^1.0.0",
-    "npm-cli-login": "^0.1.1"
+    "e2e-verdaccio": "^1.0.0"
   }
 }

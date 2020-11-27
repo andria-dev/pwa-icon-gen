@@ -18,7 +18,7 @@
 		"url": "https://github.com/ChrisBrownie55/pwa-icon-gen/issues",
 		"email": "chbphone55@gmail.com"
 	},
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"main": "./src/index.js",
 	"bin": {
 		"pwa-icon-gen": "./src/cli.js"

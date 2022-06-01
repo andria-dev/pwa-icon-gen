@@ -34,7 +34,7 @@
 		"ink-spinner": "^3.0.1",
 		"minimist": "^1.2.5",
 		"react": "^16.8.6",
-		"sharp": "^0.22.0"
+		"sharp": "^0.30.5"
 	},
 	"scripts": {
 		"test": "node ./src/cli.js logo.svg --out=test-out/ --sizes=75,100,125",
